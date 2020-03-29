@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Drawing</title>
+	<script src="https://d3js.org/d3.v4.min.js"></script>
+</head>
+<body>
+	<svg id="svg" style="width:100%; height:800px"/>
+</body>
+<script>
+	const svg=d3.select('#svg');
+	let drawing=false;
+	function draw_point() {
+		if(!drawing)
+			return;
+		const cords=d3.mouse(this);
+		svg.append('circle').attr('cx',cords[0]).attr('cy',cords[1]).attr('r',5).style('fill','violet');
+		// body...
+	}
+	svg.on('mousedown',() => {
+		drawing=true;
+	});
+	svg.on('mouseup',() => {
+		drawing=false;
+	});
+	svg.on('mousemove',draw_point);
+</script>
+</html>
